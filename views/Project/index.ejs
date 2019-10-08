@@ -1,0 +1,72 @@
+
+
+<form>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">Search <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">Create</a>
+                    <a class="nav-item nav-link" href="#">Admin</a>
+                </div>
+            </div>
+        </nav>
+        <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="display-4">Real Estate Rental System</h1>
+                  <p class="lead">Real Estate Rental Management System is a web-based system to facilitate flatshare and finding roommates.</p>
+                </div>
+              </div>
+        <div class="row">
+            <!-- The 12 cards -->
+            <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div01">
+                <button type="button" class="btn btn-primary" onclick="btn1Clicked(this)">I'm Button 1, Click
+                    me!</button>
+            </div>
+            <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div02">
+                <button type="button" class="btn btn-info" onclick="btn2Clicked(this)">I'm Button 2, Click me!</button>
+            </div>
+            <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div03">
+                <button type="button" class="btn btn-dark" onclick="btn3Clicked(this)">I'm Button 3, Click me!</button>
+            </div>
+            <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div04">
+                <img class="img-fluid img-thumbnail"
+                    src="https://cdn3.movieweb.com/i/article/2nhhEVvR8slWvqJ0PMCHOmjdiozsXD/1107:50/Avengers-Endgame-Iron-Man-Statue-Italy-Tony-Stark.jpg" />
+            </div>
+            <!-- <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div05"> -->
+                <!-- i am iron man -->
+            <!-- </div> -->
+            <!-- <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div06"><br></div> -->
+            <!-- <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div07"><br></div> -->
+            <!-- <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div08"></div> -->
+            <!-- <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div09"></div> -->
+            <!-- <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div10"></div> -->
+            <!-- <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div11"></div> -->
+            <!-- <div class="card col-12 col-sm-6 col-lg-4 col-xl-3" id="div12"></div> -->
+        </div>
+    </div>
+    <script>
+        function btn1Clicked(elem) {
+            console.log("console output");
+            elem.innerHTML = "Don't click me!";
+        };
+
+        function btn2Clicked(elem) {
+            elem.style = "display:none";
+            elem.parentNode.innerHTML = "It's gone";
+        };
+        function btn3Clicked(elem) {
+            elem.parentNode.className += " class3";
+        };
+
+       
+
+    </script>
+
+   
+</form>
