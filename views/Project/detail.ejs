@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="card col-12 col-sm-6 col-lg-4 col-xl-6" id="div01">
+
+        <a href="/project/detail/<%= details.id%>"><%= details.title%></a>
+        <div class="row">
+            <img class="img-fluid img-thumbnail col-12 col-sm-6 col-lg-4 col-xl-4" src="<%= details.image%>" />
+            <ul calss="list-group col-12 col-sm-6 col-lg-8 col-xl-8">
+                <li class="list-group-item"><b>Estate:</b> <%= details.estate%></li>
+                <li class="list-group-item"><b>Gross Area:</b> <%= details.area%></li>
+                <li class="list-group-item"><b>Rent:</b> $<%= details.rent%>a per</li>
+                <li class="list-group-item"><b>Bedrooms:</b> <%= details.bedrooms%></li>
+                <li class="list-group-item"><b>Tenants:</b> <%= details.tenants%></li>
+                <li class="list-group-item"><b>Created:</b> <%= details.createdate%></li>
+                <li class="list-group-item"><b>Uptated:</b> <%= details.updatedAt%></li>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+<div class="form-group col-12 col-lg-4 col-sm-6 col-xl-6">
+    <a href="/project/index/">back</a>
+</div>

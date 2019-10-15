@@ -1,0 +1,115 @@
+<!-- head -->
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/project/index">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/project/search"><b>Search</b> <span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="/project/create">Create</a>
+                <a class="nav-item nav-link" href="/project/admin">Admin</a>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Real Estate Rental System</h1>
+            <p class="lead">Real Estate Rental Management System is a web-based system to facilitate flatshare and
+                finding roommates.</p>
+        </div>
+    </div>
+
+    <!-- body -->
+    <div class="row">
+        <div class="card col-12 col-sm-6 col-lg-4 col-xl-4" id="div01">
+            <img class="img-fluid img-thumbnail"
+                src="https://cdn3.movieweb.com/i/article/2nhhEVvR8slWvqJ0PMCHOmjdiozsXD/1107:50/Avengers-Endgame-Iron-Man-Statue-Italy-Tony-Stark.jpg" />
+            <b>I am ironman</b>
+            <ul calss="list-group col-12 col-sm-6 col-lg-8 col-xl-8">
+                <li class="list-group-item"><b>Estate:</b> Mercury</li>
+                <li class="list-group-item"><b>Gross Area:</b> solar system</li>
+                <li class="list-group-item"><b>Rent:</b> 6 million a per</li>
+            </ul>
+        </div>
+
+        <div class="card col-12 col-sm-6 col-lg-4 col-xl-4">
+            <img class="img-fluid img-thumbnail"
+                src="https://cdn3.movieweb.com/i/article/2nhhEVvR8slWvqJ0PMCHOmjdiozsXD/1107:50/Avengers-Endgame-Iron-Man-Statue-Italy-Tony-Stark.jpg" />
+            <b>I am inevitable</b>
+            <ul calss="list-group col-12 col-sm-6 col-lg-8 col-xl-8">
+                <li class="list-group-item"><b>Estate:</b> Mercury</li>
+                <li class="list-group-item"><b>Gross Area:</b> solar system</li>
+                <li class="list-group-item"><b>Rent:</b> 6 million a per</li>
+            </ul>
+
+        </div>
+
+        <div calss="form-group col-12 col-sm-6 col-lg-4 col-xl-4">
+            <% const current = parseInt(req.query.page) || 1; %>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="/project/search/?page=<%= Math.max(current-1, 1) %>">Previous</a>
+                    </li>
+
+                    <% for (i = 1; i <= 1; i++) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/project/search/?page=<%= i %>"><%= i %></a>
+                    </li>
+                    <% } %>
+
+                    <li class="page-item">
+                        <a class="page-link" href="/project/search/?page=<%= Math.min(current+1, 3) %>">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <form action="/project/duang/<%= details.id %>" method="POST">
+            <h3>Properly Search</h3>
+            <label>Estate:</label>
+            <select onchange="estateSelected(this.value)" class="form-control" name="Project[estate]">
+                <option value="">Please select a Estate:</option>
+                <option value="Mercury">Mercury</option>
+                <option value="Venus">Venus</option>
+                <option value="Earth">Earth</option>
+                <option value="Mars">Mars</option>
+                <option value="Jupiter">Jupiter</option>
+                <option value="Saturn">Saturn</option>
+                <option value="Uranus">Uranus</option>
+                <option value="Neptune">Neptune</option>
+            </select>
+
+            <label>Bedrooms</label>
+            <input type="number" class="form-control" name="Project[bedrooms]" min=1 max=90>
+            <!-- </div>
+        <div calss="form-group col-sm-6"> -->
+
+            <p> </p>
+            <label>Area (Sq feet):</label>
+            <p>Min:
+                <input type="number" class="form-control col-12 col-sm-6 col-lg-4 col-xl-4" name="Project[minarea]">
+            </p>
+
+            <p>Max:
+                <input type="number" class="form-control col-12 col-sm-6 col-lg-4 col-xl-4" name="Project[maxarea]">
+            </p>
+
+            <h6>Rent (HK$):</h6>
+            <p>Min:
+                <input type="number" class="form-control col-12 col-sm-6 col-lg-4 col-xl-4" name="Project[minrent]">
+            </p>
+
+            <p>Max:
+                <input type="number" class="form-control col-12 col-sm-6 col-lg-4 col-xl-4" name="Project[maxrent]">
+            </p>
+
+            <button type="submit" class="btn btn-primary col-12 col-sm-6 col-lg-8 col-xl-8">Search</button>
+
+    </div>
+    </form>

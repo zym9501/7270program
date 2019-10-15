@@ -1,4 +1,3 @@
-<!--create.ejs-->
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/project/index">Home</a>
@@ -10,7 +9,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="/project/search">Search <span
                         class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/project/create"><b>Create</b></a>
+                <a class="nav-item nav-link" href="/project/create">Create</a>
                 <a class="nav-item nav-link" href="/project/admin">Admin</a>
             </div>
         </div>
@@ -23,24 +22,24 @@
         </div>
     </div>
 
-    <form action="/project/create" method="POST">
-
-        <h3>Properly Create Form <span class="badge badge-secondary">New</span></h3>
+    <!--update.ejs-->
+    <form action="/project/update/<%= details.id %>" method="POST">
+        <h3>Properly Update Form <span class="badge badge-secondary">Update</span></h3>
 
         <div class="row">
             <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
                 <label>Title:</label>
-                <input type="text" class="form-control" name="Project[title]" required>
+                <input type="text" class="form-control" name="Project[title]" value="<%= details.title%>">
             </div><br>
 
             <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
                 <label>Image URL:</label>
-                <input type="text" class="form-control" name="Project[image]" required>
+                <input type="text" class="form-control" name="Project[image]" value="<%= details.image%>">
             </div><br>
 
             <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
                 <label>Estate:</label>
-                <select onchange="estateSelected(this.value)" class="form-control" name="Project[estate]" required>
+                <select onchange="estateSelected(this.value)" class="form-control" name="Project[estate]">
                     <option value="">Please select a Estate:</option>
                     <option value="Mercury">Mercury</option>
                     <option value="Venus">Venus</option>
@@ -50,38 +49,44 @@
                     <option value="Saturn">Saturn</option>
                     <option value="Uranus">Uranus</option>
                     <option value="Neptune">Neptune</option>
-                   
                 </select>
             </div><br>
 
             <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
                 <label>Bedrooms:</label>
-                <input type="number" class="form-control" name="Project[bedrooms]" min=1 max=90 required>
+                <input type="number" class="form-control" name="Project[bedrooms]" min=1 max=90
+                    value="<%= details.bedrooms%>">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
                 <label>Gross Area:</label>
-                <input type="number" class="form-control" name="Project[area]" min=1 max=4 required>
+                <input type="number" class="form-control" name="Project[area]" min=1 max=4 value="<%= details.area%>">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
                 <label>Excepted Tenants:</label>
-                <input type="number" class="form-control" name="Project[tenants]" min=1 max=99 required>
+                <input type="number" class="form-control" name="Project[tenants]" min=1 max=99
+                    value="<%= details.tenants%>">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
                 <label>Rent:</label>
-                <input type="number" class="form-control" name="Project[rent]" required>
+                <input type="number" class="form-control" name="Project[rent]" value="<%= details.rent%>">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
-                <input type="checkbox" value="dummy" name="Project[highlight]">
+                <input type="checkbox" value="dummy" name="Project[highlight]" checked>
                 <label>Highlight</label><br>
                 <button type="submit" class="btn btn-primary ">Submit</button>
             </div>
-
-            
-
         </div>
 </div>
+</form>
+
+<form action="/project/delete/<%= details.id %>" method="POST">
+    <div class="row">
+        <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+    </div>
 </form>

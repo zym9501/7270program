@@ -19,7 +19,27 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
+  // '/': { view: 'pages/homepage' },
+  '/'  : 'ProjectController.index',
+  //SET YOUR PAGE HERE
+  'GET /project/index':'ProjectController.index',
+  'GET /project/create':'ProjectController.create',
+  'POST /project/create':'ProjectController.create',
+  'GET /project/search':'ProjectController.search',
+  'POST /project/search':'ProjectController.paginate',
+  'GET /project/admin':'ProjectController.admin',
+  // 'GET /project/detail':'ProjectController.detail',
+  //'GET /project/update':'ProjectController.admin',
+  'POST /project/duang':'ProjectController.search',
+
+  'GET /project/detail/:id': 'ProjectController.detail',
+
+  'GET /project/update/:id': 'ProjectController.update',
+  'POST /project/update/:id': 'ProjectController.update',
+  'POST /project/delete/:id': 'ProjectController.delete',
+
+  'GET /project/json':'ProjectController.json',
+
 
 
   /***************************************************************************

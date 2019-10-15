@@ -12,8 +12,29 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+    title: {
+      type: "string"
+    },
+    image: {
+      type: "string"
+    },
+    estate: {
+      type: "string"
+    },
+    area: {
+      type: "string"
+    },
+    rent: {
+      type: "number"
+    },
+    bedrooms: {
+      type: "number"
+    },
+    tenants: {
+      type: "number"
+    },
 
-
+   
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

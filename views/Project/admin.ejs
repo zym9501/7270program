@@ -1,6 +1,7 @@
+<!-- head -->
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/project/index"><b>Home</b></a>
+        <a class="navbar-brand" href="/project/index">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,7 +11,7 @@
                 <a class="nav-item nav-link active" href="/project/search">Search <span
                         class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/project/create">Create</a>
-                <a class="nav-item nav-link" href="/project/admin">Admin</a>
+                <a class="nav-item nav-link" href="/project/admin"><b>Admin</b></a>
             </div>
         </div>
     </nav>
@@ -21,26 +22,23 @@
                 finding roommates.</p>
         </div>
     </div>
-    <form>
-        <div class="row">
-            <% homepage.forEach( function(model) {%>
-            <div class="card col-12 col-sm-6 col-lg-4 col-xl-6" id="div01">
+    <!-- body -->
 
-                <a href="/project/detail/<%= model.id%>"><%= model.title %></a>
-                <div class="row">
-                    <img class="img-fluid img-thumbnail col-12 col-sm-6 col-lg-4 col-xl-4" src="<%= model.image%>" />
-                    <ul calss="list-group col-12 col-sm-6 col-lg-8 col-xl-8">
-                        <li class="list-group-item"><b>Estate:</b> <%= model.estate %></li>
-                        <li class="list-group-item"><b>Gross Area:</b> <%= model.area %></li>
-                        <li class="list-group-item"><b>Rent:</b> $<%= model.rent %> a per</li>
-                    </ul>
-                </div>
-
-
-            </div>
+    <div calss="container col-12 col-sm-8 col-lg-6 col-xl-6">
+        <table class="table">
+            <% c = 1; %>
+            <% key.forEach( function(model) { %>
+            <tr>
+                <td><%= c %></td>
+                <td><%= model.title %></td>
+                <td><%= model.estate %></td>
+                <td><a href="/project/update/<%= model.id %>">Edit</a></td>
+            </tr>
+            <% c += 1;%>
             <% }); %>
+            
+        </table>
 
 
-        </div>
-    </form>
+    </div>
 </div>
