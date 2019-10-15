@@ -40,11 +40,7 @@ module.exports = {
         return res.ok("Successfully created!");
     },
 
-    // search function
-    search: async function (req, res) {
-
-        return res.view('project/search');
-    },
+   
 
     // action - admin
     admin: async function (req, res) {
@@ -56,24 +52,7 @@ module.exports = {
 
     },
 
-    // action - paginate
-    paginate: async function (req, res) {
-
-        const qPage = Math.max(req.query.page - 1, 0) || 0;
-
-        const numOfItemsPerPage = 2;
-
-        var models = await Project.find({
-            limit: numOfItemsPerPage,
-            skip: numOfItemsPerPage * qPage
-        });
-        
-        var numOfPage = Math.ceil(await Project.count() / numOfItemsPerPage);
-        
-        console.log(numOfPage);
-        return res.view('project/search', { persons: models, count: numOfPage });
-        
-    },
+    
 
 
     // action - detail
@@ -141,6 +120,49 @@ module.exports = {
 
         return res.ok("Deleted.");
 
+    },
+
+     // search function
+     search: async function (req, res) {
+
+        const sestate = req.query.estate || "";
+        const sbedrooms = parseInt(req.query.bedrooms)|| 1;
+        const sareamax = parseInt(req.query.maxarea)||9000;
+        const sareamin = parseInt(req.query.minarea)||0;
+        const srentmax = parseInt(req.query.maxrent)||9000;
+        const srentmin = parseInt(req.query.minrent)||0;    
+
+        const qPage = Math.max(req.query.page - 1, 0) || 0;
+
+        const numOfItemsPerPage = 2;
+
+
+        var poi = {
+            area:{'<=':sareamin,'>=':sareamax,},
+            rent:{'<=':srentmin,'>=':srentmax,},
+            estate:{contains: sestate},
+        };
+
+        if (isNaN(sbedrooms)) {
+    
+            var models = await Project.find({
+                where: poi,
+                limit: numOfItemsPerPage,
+                skip: numOfItemsPerPage* qPage
+            });
+    
+        } else {
+    
+            var models = await Project.find({
+                where: poi,
+                limit: numOfItemsPerPage,
+                skip: numOfItemsPerPage* qPage
+            });
+    
+        }
+        console.log(models);
+        var numOfPage = Math.ceil(await Project.count({where:poi}) / numOfItemsPerPage);
+        return res.view('project/search',{nico:models, count:numOfPage});
     },
 
 };

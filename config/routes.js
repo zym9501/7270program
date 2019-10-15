@@ -26,12 +26,11 @@ module.exports.routes = {
   'GET /project/create':'ProjectController.create',
   'POST /project/create':'ProjectController.create',
   'GET /project/search':'ProjectController.search',
-  'POST /project/search':'ProjectController.paginate',
+  'POST /project/search':'ProjectController.search',
   'GET /project/admin':'ProjectController.admin',
   // 'GET /project/detail':'ProjectController.detail',
   //'GET /project/update':'ProjectController.admin',
-  'POST /project/duang':'ProjectController.search',
-
+  
   'GET /project/detail/:id': 'ProjectController.detail',
 
   'GET /project/update/:id': 'ProjectController.update',
