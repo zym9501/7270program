@@ -28,7 +28,7 @@ module.exports.bootstrap = async function() {
   // ```
 
   if (await Project.count() > 0) {
-    
+    return;
   }
   
   await Project.createEach([
