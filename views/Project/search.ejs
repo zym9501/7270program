@@ -22,107 +22,107 @@
                 finding roommates.</p>
         </div>
     </div>
-</div>
-
-<!-- body -->
-<form action="/project/search/" method="GET">
-    <div class="row">
-        <% nico.forEach( function(models) {%>
-        <div class="card col-12 col-sm-6 col-lg-4 col-xl-4" id="div01">
-            <img class="img-fluid img-thumbnail" src="<%= models.image%>" />
-            <b><%= models.title%></b>
-            <ul calss="list-group col-12 col-sm-6 col-lg-8 col-xl-8">
-                <li class="list-group-item"><b>Estate:</b> <%= models.estate%></li>
-                <li class="list-group-item"><b>Gross Area:</b> <%= models.area%></li>
-                <li class="list-group-item"><b>Rent:</b> <%= models.rent%> a per</li>
-            </ul>
-
-        </div>
-        <% }); %>
 
 
-        <div class="card col-12 col-sm-6 col-lg-4 col-xl-4">
-            <% const current = parseInt(req.query.page) || 1; %>
-
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="/project/search/?page=<%= Math.max(current-1, 1) %>">Previous</a>
-                    </li>
-
-                    <% for (i = 1; i <= 1; i++) { %>
-                    <li class="page-item">
-                        <a class="page-link" href="/project/search/?page=<%= i %>"><%= i %></a>
-                    </li>
-                    <% } %>
-
-                    <li class="page-item">
-                        <a class="page-link" href="/project/search/?page=<%= Math.min(current+1, 3) %>">Next</a>
-                    </li>
+    <!-- body -->
+    <form action="/project/search/" method="GET">
+        <div class="row">
+            <% nico.forEach( function(models) {%>
+            <div class="card col-12 col-sm-6 col-lg-4 col-xl-4" id="div01">
+                <img class="img-fluid img-thumbnail" src="<%= models.image%>" />
+                <b><%= models.title%></b>
+                <ul calss="list-group col-12 col-sm-6 col-lg-8 col-xl-8">
+                    <li class="list-group-item"><b>Estate:</b> <%= models.estate%></li>
+                    <li class="list-group-item"><b>Gross Area:</b> <%= models.area%></li>
+                    <li class="list-group-item"><b>Rent:</b> <%= models.rent%> a per</li>
                 </ul>
-            </nav>
-            <h3>Properly Search</h3>
-            <label>Estate:</label>
-            <select onchange="estateSelected(this.value)" class="form-control" name="Project[estate]">
-                <option value="">Please select a Estate:</option>
-                <option value="Mercury">Mercury</option>
-                <option value="Venus">Venus</option>
-                <option value="Earth">Earth</option>
-                <option value="Mars">Mars</option>
-                <option value="Jupiter">Jupiter</option>
-                <option value="Saturn">Saturn</option>
-                <option value="Uranus">Uranus</option>
-                <option value="Neptune">Neptune</option>
-            </select>
-
-            <label>Bedrooms</label>
-            <input type="number" class="form-control" name="Project[bedrooms]" min=1 max=90>
-            <!-- </div>
-        <div calss="form-group col-sm-6"> -->
-
-            <p> </p>
-
-
-
-        <div ><label>Area (Sq feet):</label></div>
-            <div class="row">
-                <div class="card col-12 col-sm-6 col-lg-4 col-xl-6">
-                    
-                    <p>Min:
-                        <input type="number" class="form-control" name="Project[minarea]">
-                    </p>
-
-                </div>
-
-                <div class="card col-12 col-sm-6 col-lg-4 col-xl-6">
-                    <p>Max:
-                        <input type="number" class="form-control " name="Project[maxrent]">
-                    </p>
-                </div>
-            </div>
-            <div class=""><h6>Rent (HK$):</h6></div>
-            <div class="row">
-                <div class=" col-12 col-sm-6 col-lg-4 col-xl-6">
-
-                    
-                    <p>Min:
-                        <input type="number" class="form-control " name="Project[minrent]">
-                    </p>
-
-                </div>
-
-                <div class=" col-12 col-sm-6 col-lg-4 col-xl-6">
-
-                    <p>Max:
-                        <input type="number" class="form-control" name="Project[maxarea]">
-                    </p>
-                </div>
 
             </div>
-            <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
-                <button type="submit" class="btn btn-primary ">Search</button>
-            </div>
+            <% }); %>
 
+
+            <div class="card col-12 col-sm-6 col-lg-4 col-xl-4">
+                <% const current = parseInt(req.query.page) || 1; %>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="/project/search/?Project%5Bestate%5D=<%=SQ.sestate %>&Project%5Bbedrooms%5D=<%=SQ.sbedrooms %>&Project%5Bminarea%5D=<%= SQ.sareamin %>&Project%5Bmaxarea%5D=<%= SQ.sareamax %>&Project%5Bminrent%5D=<%=SQ.srentmin %>&Project%5Bmaxrent%5D=<%=SQ.srentmax %>&page=<%= Math.max(current-1, 1) %>">Previous</a>
+                        </li>
+
+                        <% for (i = 1; i <= 1; i++) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="/project/search/?page=<%= i %>"><%= i %></a>
+                        </li>
+                        <% } %>
+
+                        <li class="page-item">
+                            <a class="page-link" href="/project/search/?Project%5Bestate%5D=<%=SQ.sestate %>&Project%5Bbedrooms%5D=<%=SQ.sbedrooms %>&Project%5Bminarea%5D=<%= SQ.sareamin %>&Project%5Bmaxarea%5D=<%= SQ.sareamax %>&Project%5Bminrent%5D=<%=SQ.srentmin %>&Project%5Bmaxrent%5D=<%=SQ.srentmax %>&page=<%= Math.min(current+1, 3) %>">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+               
+    
+                <h3>Properly Search</h3>
+                <label>Estate:</label>
+                <select onchange="estateSelected(this.value)" class="form-control" name="Project[estate]">
+                    <option value="">Please select a Estate:</option>
+                    <option value="Mercury">Mercury</option>
+                    <option value="Venus">Venus</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Mars">Mars</option>
+                    <option value="Jupiter">Jupiter</option>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Uranus">Uranus</option>
+                    <option value="Neptune">Neptune</option>
+                </select>
+
+                <label>Bedrooms</label>
+                <input type="number" class="form-control" name="Project[bedrooms]" min=1 max=90 value="<%=SQ.sbedrooms %>">
+
+
+                <div><label>Area (Sq feet):</label></div>
+                <div class="row">
+                    <div class="card col-12 col-sm-6 col-lg-4 col-xl-6">
+
+                        <p>Min:
+                            <input type="number" class="form-control" name="Project[minarea]" value="<%= SQ.sareamin %>">
+                        </p>
+
+                    </div>
+
+                    <div class="card col-12 col-sm-6 col-lg-4 col-xl-6">
+                        <p>Max:
+                            <input type="number" class="form-control " name="Project[maxarea]" value="<%=SQ.sareamax %>">
+                        </p>
+                    </div>
+                </div>
+                <div class="">
+                    <h6>Rent (HK$):</h6>
+                </div>
+                <div class="row">
+                    <div class=" col-12 col-sm-6 col-lg-4 col-xl-6">
+
+
+                        <p>Min:
+                            <input type="number" class="form-control " name="Project[minrent]" value="<%=SQ.srentmin %>">
+                        </p>
+
+                    </div>
+
+                    <div class=" col-12 col-sm-6 col-lg-4 col-xl-6">
+
+                        <p>Max:
+                            <input type="number" class="form-control" name="Project[maxrent]" value="<%=SQ.srentmax %>">
+                        </p>
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
+                    <button type="submit" class="btn btn-primary ">Search</button>
+                </div>
+
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>

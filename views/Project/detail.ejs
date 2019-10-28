@@ -1,22 +1,46 @@
-<div class="row">
-    <div class="card col-12 col-sm-6 col-lg-4 col-xl-6" id="div01">
-
-        <a href="/project/detail/<%= details.id%>"><%= details.title%></a>
-        <div class="row">
-            <img class="img-fluid img-thumbnail col-12 col-sm-6 col-lg-4 col-xl-4" src="<%= details.image%>" />
-            <ul calss="list-group col-12 col-sm-6 col-lg-8 col-xl-8">
-                <li class="list-group-item"><b>Estate:</b> <%= details.estate%></li>
-                <li class="list-group-item"><b>Gross Area:</b> <%= details.area%></li>
-                <li class="list-group-item"><b>Rent:</b> $<%= details.rent%>a per</li>
-                <li class="list-group-item"><b>Bedrooms:</b> <%= details.bedrooms%></li>
-                <li class="list-group-item"><b>Tenants:</b> <%= details.tenants%></li>
-                <li class="list-group-item"><b>Created:</b> <%= details.createdate%></li>
-                <li class="list-group-item"><b>Uptated:</b> <%= details.updatedAt%></li>
-            </ul>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/project/index">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/project/search">Search <span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="/project/create"><b>Create</b></a>
+                <a class="nav-item nav-link" href="/project/admin">Admin</a>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Real Estate Rental System</h1>
+            <p class="lead">Real Estate Rental Management System is a web-based system to facilitate flatshare and
+                finding roommates.</p>
         </div>
     </div>
-    
-</div>
-<div class="form-group col-12 col-lg-4 col-sm-6 col-xl-6">
-    <a href="/project/index/">back</a>
+    <div class="row">
+        <div class="card col-12 col-sm-6 col-lg-12 col-xl-12" id="div01">
+
+            <a href="/project/detail/<%= details.id%>"><b><%= details.title%></b></a>
+            <div class="row">
+                <img class="img-fluid img-thumbnail " src="<%= details.image%>" />
+                <ul calss="list-group col-12 col-sm-6 col-lg-6 col-xl-6">
+                    <li class="list-group-item"><b>Estate:</b> <%= details.estate%></li>
+                    <li class="list-group-item"><b>Gross Area:</b> <%= details.area%></li>
+                    <li class="list-group-item"><b>Rent:</b> $<%= details.rent%>a per</li>
+                    <li class="list-group-item"><b>Bedrooms:</b> <%= details.bedrooms%></li>
+                    <li class="list-group-item"><b>Tenants:</b> <%= details.tenants%></li>
+                    <li class="list-group-item"><b>Created:</b> <%= details.createdate%></li>
+                    <li class="list-group-item"><b>Uptated:</b> <%= details.updatedate%></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group col-12 col-lg-4 col-sm-6 col-xl-6">
+        <a href="/project/index/">back</a>
+    </div>
 </div>

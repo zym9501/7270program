@@ -10,7 +10,7 @@ module.exports = {
     // action - index
     index: async function (req, res) {
         var model = await Project.find({
-            where: { 'highligth': { '!=': 'dummy' } },
+            where: { 'highlight': { '!=': '' } },
             limit: 4
         })
             .sort([{ id: 'DESC' },]);
@@ -40,7 +40,7 @@ module.exports = {
         return res.ok("Successfully created!");
     },
 
-   
+
 
     // action - admin
     admin: async function (req, res) {
@@ -48,19 +48,19 @@ module.exports = {
         var models = await Project.find();
         var numOfPage = Math.ceil(await Project.count());
         console.log(models);
-        return res.view('project/admin', { key: models , count: numOfPage});
+        return res.view('project/admin', { key: models, count: numOfPage });
 
     },
 
-    
+
 
 
     // action - detail
     detail: async function (req, res) {
         var model = await Project.findOne(req.params.id);
-        
+
         if (!model) return res.notFound();
-       
+
         console.log(model);
         return res.view('project/detail', { details: model });
 
@@ -104,7 +104,7 @@ module.exports = {
             }).fetch();
 
             if (models.length == 0) return res.notFound();
-            console.log(models);
+
             return res.ok("Record updated");
 
         }
@@ -122,47 +122,70 @@ module.exports = {
 
     },
 
-     // search function
-     search: async function (req, res) {
-
-        const sestate = req.query.estate || "";
-        const sbedrooms = parseInt(req.query.bedrooms)|| 1;
-        const sareamax = parseInt(req.query.maxarea)||9000;
-        const sareamin = parseInt(req.query.minarea)||0;
-        const srentmax = parseInt(req.query.maxrent)||9000;
-        const srentmin = parseInt(req.query.minrent)||0;    
+    // search function
+    search: async function (req, res) {
 
         const qPage = Math.max(req.query.page - 1, 0) || 0;
 
         const numOfItemsPerPage = 2;
 
+        if (!req.query.Project) {
 
-        var poi = {
-            area:{'<=':sareamin,'>=':sareamax,},
-            rent:{'<=':srentmin,'>=':srentmax,},
-            estate:{contains: sestate},
-        };
+            const sestate = "";
+            const sbedrooms ="";
+            const sareamax ="";
+            const sareamin = "";
+            const srentmax = "";
+            const srentmin ="";
 
-        if (isNaN(sbedrooms)) {
-    
+            var sq= {sestate,sbedrooms,sareamax,sareamin,srentmax,srentmin,};
+
             var models = await Project.find({
-                where: poi,
                 limit: numOfItemsPerPage,
-                skip: numOfItemsPerPage* qPage
+                skip: numOfItemsPerPage * qPage
             });
-    
-        } else {
-    
-            var models = await Project.find({
-                where: poi,
-                limit: numOfItemsPerPage,
-                skip: numOfItemsPerPage* qPage
-            });
-    
+            var numOfPage = Math.ceil(await Project.count({ where: poi }) / numOfItemsPerPage);
+            return res.view('project/search', { nico: models, count: numOfPage ,SQ:sq });
         }
-        console.log(models);
-        var numOfPage = Math.ceil(await Project.count({where:poi}) / numOfItemsPerPage);
-        return res.view('project/search',{nico:models, count:numOfPage});
+        else {
+            const sestate = req.query.Project.estate || "";
+            const sbedrooms = parseInt(req.query.Project.bedrooms) || 1;
+            const sareamax = parseInt(req.query.Project.maxarea) || 900000;
+            const sareamin = parseInt(req.query.Project.minarea) || 1;
+            const srentmax = parseInt(req.query.Project.maxrent) || 900000;
+            const srentmin = parseInt(req.query.Project.minrent) || 1;
+
+            var sq= {sestate,sbedrooms,sareamax,sareamin,srentmax,srentmin,};
+
+            var poi = {
+                area: { '>=': sareamin, '<=': sareamax, },
+                rent: { '>=': srentmin, '<=': srentmax, },
+                estate: { contains: sestate },
+            };
+            console.log(poi);
+
+            if (isNaN(sbedrooms)) {
+
+                var models = await Project.find({
+                    where: poi,
+                    limit: numOfItemsPerPage,
+                    skip: numOfItemsPerPage * qPage
+                });
+
+            } else {
+
+                var models = await Project.find({
+                    where: poi,
+                    limit: numOfItemsPerPage,
+                    skip: numOfItemsPerPage * qPage
+                });
+
+            }
+            
+            console.log(sq);
+            var numOfPage = Math.ceil(await Project.count({ where: poi }) / numOfItemsPerPage);
+            return res.view('project/search', { nico: models, count: numOfPage ,SQ:sq });
+        }
     },
 
 };
