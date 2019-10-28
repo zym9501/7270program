@@ -27,4 +27,15 @@ module.exports.bootstrap = async function() {
   // ]);
   // ```
 
+  if (await Project.count() > 0) {
+    
+  }
+  
+  await Project.createEach([
+      { title: "Is Really Hot", image="https://upload.wikimedia.org/wikipedia/commons/3/3f/Mercury_Globe-MESSENGER_mosaic_centered_at_0degN-0degE.jpg",estate="Mercury",area=300,rent= 7000,bedrooms=7,tenants=7,highlight="dummy" },
+      { title: "Godlen Star", image="https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg",estate="Venus",area=500,rent= 8000,bedrooms=9,tenants=9,highlight="dummy"  },
+      { title: "You are so Big!", image="https://upload.wikimedia.org/wikipedia/commons/6/65/PIA02879_-_A_New_Year_for_Jupiter_and_Io.jpg",estate="Jupiter",area=3000,rent= 9000,bedrooms=10,tenants=10,highlight="dummy" },
+      { title: "A Small Red Ball", image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/1920px-OSIRIS_Mars_true_color.jpg",estate="Mars",area=1000,rent= 40000,bedrooms=11,tenants=11,highlight="dummy" },
+      // etc.
+  ]);
 };
