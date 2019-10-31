@@ -20,25 +20,29 @@ module.exports.routes = {
   ***************************************************************************/
 
   // '/': { view: 'pages/homepage' },
-  '/'  : 'ProjectController.index',
+  '/': 'ProjectController.index',
   //SET YOUR PAGE HERE
-  'GET /project/index':'ProjectController.index',
-  'GET /project/create':'ProjectController.create',
-  'POST /project/create':'ProjectController.create',
-  'GET /project/search':'ProjectController.search',
-  'POST /project/search':'ProjectController.search',
-  'GET /project/admin':'ProjectController.admin',
+  'GET /project/index': 'ProjectController.index',
+  'GET /project/create': 'ProjectController.create',
+  'POST /project/create': 'ProjectController.create',
+  'GET /project/search': 'ProjectController.search',
+  'POST /project/search': 'ProjectController.search',
+  'GET /project/admin': 'ProjectController.admin',
   // 'GET /project/detail':'ProjectController.detail',
   //'GET /project/update':'ProjectController.admin',
-  
+
   'GET /project/detail/:id': 'ProjectController.detail',
 
   'GET /project/update/:id': 'ProjectController.update',
   'POST /project/update/:id': 'ProjectController.update',
   'POST /project/delete/:id': 'ProjectController.delete',
 
-  'GET /project/json':'ProjectController.json',
+  'GET /project/json': 'ProjectController.json',
 
+  //User
+  'GET /user/login': 'UserController.login',
+  'POST /user/login': 'UserController.login',
+  'POST /user/logout': 'UserController.logout',
 
 
   /***************************************************************************

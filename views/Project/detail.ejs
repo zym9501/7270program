@@ -22,11 +22,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="card col-12 col-sm-6 col-lg-12 col-xl-12" id="div01">
+        <div class="card col-12" id="div01">
 
             <a href="/project/detail/<%= details.id%>"><b><%= details.title%></b></a>
             <div class="row">
-                <img class="img-fluid img-thumbnail " src="<%= details.image%>" />
+                <img class="img-fluid img-thumbnail col-12 col-sm-6 col-lg-6 col-xl-6" src="<%= details.image%>" />
                 <ul calss="list-group col-12 col-sm-6 col-lg-6 col-xl-6">
                     <li class="list-group-item"><b>Estate:</b> <%= details.estate%></li>
                     <li class="list-group-item"><b>Gross Area:</b> <%= details.area%></li>
