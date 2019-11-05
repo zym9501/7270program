@@ -42,7 +42,14 @@ module.exports.routes = {
   //User
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
-  'POST /user/logout': 'UserController.logout',
+  'GET /user/logout': 'UserController.logout',
+  'POST /user/create': 'UserController.create',
+  'GET /user/create': 'UserController.create',
+
+  'GET /project/:id/rentedby': 'PersonController.populate',
+  'GET /user/:id/Own': 'UserController.populate',
+  'POST /user/:id/Own/add/:fk': 'UserController.add',
+  'POST /user/:id/Own/remove/:fk': 'UserController.remove',
 
 
   /***************************************************************************

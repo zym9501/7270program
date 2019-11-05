@@ -46,11 +46,21 @@ module.exports.bootstrap = async function () {
 
     await User.createEach([
       { username: "zym", password: hash },
-      { username: "boss", password: hash }
+      { username: "boss", password: hash },
       // etc.
+      { username: "ytm", password: hash },
+      { username: "batman", password: hash }
     ]);
 
   }
 
+
+  const gs = await Project.findOne({ title: "Godlen Star" });
+  const hot = await Project.findOne({ title: "Is Really Hot" });
+  const ytm = await User.findOne({ username: "ytm" });
+  const batman = await User.findOne({ username: "batman" });
+
+  await User.addToCollection(batman.id, 'rentedby').members(gs.id);
+  await User.addToCollection(ytm.id, 'rentedby').members([gs.id, hot.id]);
   return;
 };

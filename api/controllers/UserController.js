@@ -24,7 +24,7 @@ module.exports = {
         // if (user.password != req.body.password)
         // return res.status(401).send("Wrong Password");
 
-        req.session.regenerate(function (err) {
+        req.session.regenerate(async function (err) {
 
             if (err) return res.serverError(err);
 
@@ -32,7 +32,8 @@ module.exports = {
 
             sails.log("[Session] ", req.session);
 
-            return res.ok("Login successfully.");
+            //return res.ok("Login successfully.");
+            return res.redirect("/");
 
         });
 
@@ -48,6 +49,24 @@ module.exports = {
 
         });
     },
+
+    // action - create
+    create: async function (req, res) {
+        if (req.method == "GET")
+            return res.view('user/create');
+
+        if (!req.body.User)
+             return res.badRequest("Form-data not received.");
+
+       
+
+        console.log(req.body.User)
+        await User.create(req.body.User);
+
+        return res.redirect('/user/login');
+    },
+
+    
 
 };
 

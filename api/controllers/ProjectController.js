@@ -132,20 +132,20 @@ module.exports = {
         if (!req.query.Project) {
 
             const sestate = "";
-            const sbedrooms ="";
-            const sareamax ="";
+            const sbedrooms = "";
+            const sareamax = "";
             const sareamin = "";
             const srentmax = "";
-            const srentmin ="";
+            const srentmin = "";
 
-            var sq= {sestate,sbedrooms,sareamax,sareamin,srentmax,srentmin,};
+            var sq = { sestate, sbedrooms, sareamax, sareamin, srentmax, srentmin, };
 
             var models = await Project.find({
                 limit: numOfItemsPerPage,
                 skip: numOfItemsPerPage * qPage
             });
             var numOfPage = Math.ceil(await Project.count({ where: poi }) / numOfItemsPerPage);
-            return res.view('project/search', { nico: models, count: numOfPage ,SQ:sq });
+            return res.view('project/search', { nico: models, count: numOfPage, SQ: sq });
         }
         else {
             const sestate = req.query.Project.estate || "";
@@ -155,7 +155,7 @@ module.exports = {
             const srentmax = parseInt(req.query.Project.maxrent) || 900000;
             const srentmin = parseInt(req.query.Project.minrent) || 1;
 
-            var sq= {sestate,sbedrooms,sareamax,sareamin,srentmax,srentmin,};
+            var sq = { sestate, sbedrooms, sareamax, sareamin, srentmax, srentmin, };
 
             var poi = {
                 area: { '>=': sareamin, '<=': sareamax, },
@@ -181,12 +181,22 @@ module.exports = {
                 });
 
             }
-            
+
             console.log(sq);
             var numOfPage = Math.ceil(await Project.count({ where: poi }) / numOfItemsPerPage);
-            return res.view('project/search', { nico: models, count: numOfPage ,SQ:sq });
+            return res.view('project/search', { nico: models, count: numOfPage, SQ: sq });
         }
     },
 
+
+    populate: async function (req, res) {
+
+        var model = await Project.findOne(req.params.id).populate("rentedby");
+
+        if (!model) return res.notFound();
+
+        return res.json(model);
+
+    },
 };
 

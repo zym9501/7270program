@@ -11,7 +11,8 @@
 module.exports.policies = {
   ProjectController: {
 
-    create: 'isAdmin'
+    create: 'isAdmin',
+    admin:'isAdmin'
 
   }
   /***************************************************************************

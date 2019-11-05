@@ -15,7 +15,7 @@ module.exports = {
     username: {
       type: "string"
     },
-    
+
     password: {
       type: "string"
     },
@@ -28,7 +28,12 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+    rentedby: {
+      collection: 'Project',
+      via: 'Own'
 
+    },
+    
   },
 
 };
