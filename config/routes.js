@@ -38,6 +38,8 @@ module.exports.routes = {
   'POST /project/delete/:id': 'ProjectController.delete',
 
   'GET /project/json': 'ProjectController.json',
+  'GET /project/myrentals': 'ProjectController.myrentals',
+  'GET /project/:id/rentedby': 'ProjectController.populate',
 
   //User
   'GET /user/login': 'UserController.login',
@@ -45,11 +47,9 @@ module.exports.routes = {
   'GET /user/logout': 'UserController.logout',
   'POST /user/create': 'UserController.create',
   'GET /user/create': 'UserController.create',
-
-  'GET /project/:id/rentedby': 'PersonController.populate',
-  'GET /user/:id/Own': 'UserController.populate',
-  'POST /user/:id/Own/add/:fk': 'UserController.add',
-  'POST /user/:id/Own/remove/:fk': 'UserController.remove',
+  'GET /user/:id/own': 'UserController.populate',
+  'POST /user/:id/own/add/:fk': 'UserController.add',
+  'POST /user/:id/own/remove/:fk': 'UserController.remove',
 
 
   /***************************************************************************

@@ -55,12 +55,12 @@ module.exports.bootstrap = async function () {
   }
 
 
-  const gs = await Project.findOne({ title: "Godlen Star" });
-  const hot = await Project.findOne({ title: "Is Really Hot" });
+  const venus = await Project.findOne({ title: "Godlen Star" });
+  const mercury = await Project.findOne({ title: "Is Really Hot" });
   const ytm = await User.findOne({ username: "ytm" });
   const batman = await User.findOne({ username: "batman" });
 
-  await User.addToCollection(batman.id, 'rentedby').members(gs.id);
-  await User.addToCollection(ytm.id, 'rentedby').members([gs.id, hot.id]);
+  await User.addToCollection(batman.id, 'rentedby').members(venus.id);
+  await User.addToCollection(ytm.id, 'rentedby').members([venus.id, mercury.id]);
   return;
 };

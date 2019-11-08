@@ -191,11 +191,23 @@ module.exports = {
 
     populate: async function (req, res) {
 
-        var model = await Project.findOne(req.params.id).populate("rentedby");
+        var model = await Project.findOne(req.params.id).populate("Own");
 
         if (!model) return res.notFound();
 
         return res.json(model);
+
+    },
+
+    myrentals: async function (req, res) {
+
+        var duang = await User.find({where: { username: { contains: req.session.username },},}).populate("rentedby");
+        if (!duang) return res.notFound();
+        
+        console.log(duang);
+        // return res.json(duang);
+            
+        return res.view('project/myrentals', { homepage: duang[0]['rentedby'] });
 
     },
 };

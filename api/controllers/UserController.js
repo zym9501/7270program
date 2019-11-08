@@ -30,6 +30,7 @@ module.exports = {
 
             req.session.username = req.body.username;
 
+
             sails.log("[Session] ", req.session);
 
             //return res.ok("Login successfully.");
@@ -56,9 +57,9 @@ module.exports = {
             return res.view('user/create');
 
         if (!req.body.User)
-             return res.badRequest("Form-data not received.");
+            return res.badRequest("Form-data not received.");
 
-       
+
 
         console.log(req.body.User)
         await User.create(req.body.User);
@@ -66,7 +67,16 @@ module.exports = {
         return res.redirect('/user/login');
     },
 
-    
+    populate: async function (req, res) {
+
+           
+        var model = await User.findOne(req.params.id).populate("rentedby");
+
+        if (!model) return res.notFound();
+        console.log(model);
+        return res.json(model);
+
+    },
 
 };
 
