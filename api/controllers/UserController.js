@@ -70,10 +70,10 @@ module.exports = {
     populate: async function (req, res) {
 
            
-        var model = await User.findOne(req.params.id).populate("rentedby");
+        var model = await User.findOne(req.params.id).populate("Own");
 
         if (!model) return res.notFound();
-        console.log(model);
+        
         return res.json(model);
 
     },

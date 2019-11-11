@@ -191,7 +191,7 @@ module.exports = {
 
     populate: async function (req, res) {
 
-        var model = await Project.findOne(req.params.id).populate("Own");
+        var model = await Project.findOne(req.params.id).populate("rentedby");
 
         if (!model) return res.notFound();
 
@@ -201,13 +201,24 @@ module.exports = {
 
     myrentals: async function (req, res) {
 
-        var duang = await User.find({where: { username: { contains: req.session.username },},}).populate("rentedby");
+        var duang = await User.find({ where: { username: { contains: req.session.username }, }, }).populate("Own");
         if (!duang) return res.notFound();
-        
+
         console.log(duang);
         // return res.json(duang);
-            
-        return res.view('project/myrentals', { homepage: duang[0]['rentedby'] });
+
+        return res.view('project/myrentals', { homepage: duang[0]['Own'] });
+
+    },
+
+    occupants: async function (req, res) {
+
+
+        var model = await Project.find({ where: { id: req.params.id } }).populate("rentedby");
+
+        if (!model) return res.notFound();
+        // return res.json(model);
+        return res.view('project/occupants', { key: model[0]['rentedby'] });
 
     },
 };

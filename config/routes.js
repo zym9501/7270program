@@ -36,6 +36,7 @@ module.exports.routes = {
   'GET /project/update/:id': 'ProjectController.update',
   'POST /project/update/:id': 'ProjectController.update',
   'POST /project/delete/:id': 'ProjectController.delete',
+  'GET /project/occupants/:id':'ProjectController.occupants',
 
   'GET /project/json': 'ProjectController.json',
   'GET /project/myrentals': 'ProjectController.myrentals',

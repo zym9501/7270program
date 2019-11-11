@@ -26,17 +26,25 @@
 
     <div calss="container col-12 col-sm-8 col-lg-6 col-xl-6">
         <table class="table">
+            <tr>
+                <th>Num</th>
+                <th>Title</th>
+                <th>Estate</th>
+                <th>Occupants</th>
+                <th>Edit</th>
+            </tr>
             <% c = 1; %>
             <% key.forEach( function(model) { %>
             <tr>
                 <td><%= c %></td>
                 <td><%= model.title %></td>
                 <td><%= model.estate %></td>
+                <td><a href="/project/occupants/<%= model.id %>">Occupants</a></td>
                 <td><a href="/project/update/<%= model.id %>">Edit</a></td>
             </tr>
             <% c += 1;%>
             <% }); %>
-            
+
         </table>
 
 

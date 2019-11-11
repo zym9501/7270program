@@ -1,0 +1,24 @@
+<div calss="container col-12 col-sm-8 col-lg-6 col-xl-6">
+    <table class="table">
+        <tr>
+            <th>Count</th>
+            <th>Username</th>
+            <th>ID</th>
+
+        </tr>
+        <% c = 1; %>
+        <% key.forEach( function(model) { %>
+        <tr>
+            <td><%= c %></td>
+            <td><%= model.username %></td>
+            <td><%= model.id %></td>
+
+        </tr>
+        <% c += 1;%>
+        <% }); %>
+
+    </table>
+
+
+</div>
+<a href="/project/admin">back</a>

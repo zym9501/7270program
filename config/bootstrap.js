@@ -60,7 +60,7 @@ module.exports.bootstrap = async function () {
   const ytm = await User.findOne({ username: "ytm" });
   const batman = await User.findOne({ username: "batman" });
 
-  await User.addToCollection(batman.id, 'rentedby').members(venus.id);
-  await User.addToCollection(ytm.id, 'rentedby').members([venus.id, mercury.id]);
+  await User.addToCollection(batman.id, 'Own').members(venus.id);
+  await User.addToCollection(ytm.id, 'Own').members([venus.id, mercury.id]);
   return;
 };
