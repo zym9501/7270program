@@ -61,8 +61,13 @@ module.exports = {
 
         if (!model) return res.notFound();
 
-        console.log(model);
-        return res.view('project/detail', { details: model });
+        var restate = await Project.findOne(req.params.id).populate('rentedby');
+        numOfrentals= restate.rentedby.length;
+        //var customs = await Project.find({ where: { id: req.params.id } }).populate("rentedby");
+        console.log(numOfrentals);
+        //return res.json(restate.rentedby[0]['username']);
+        //return res.view('project/detail', { details: model, nor:numOfrentals,key: customs[0]['username'] });
+        return res.view('project/detail', { details: model, nor:numOfrentals,key: restate.rentedby[0]['username'] });
 
     },
 
@@ -105,7 +110,8 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Record updated");
+            // return res.ok("Record updated");
+            return res.redirect("/project/admin");
 
         }
     },
@@ -114,11 +120,16 @@ module.exports = {
 
         if (req.method == "GET") return res.forbidden();
 
-        var models = await Project.destroy(req.params.id).fetch();
+        // var models = await Project.destroy(req.params.id).fetch();
 
-        if (models.length == 0) return res.notFound();
+        // if (models.length == 0) return res.notFound();
 
-        return res.ok("Deleted.");
+        // return res.ok("Deleted.");
+        if (req.wantsJSON) {
+            return res.json({ message: "Person deleted.", url: '/project/admin' });    // for ajax request
+        } else {
+            return res.redirect("/project/admin");          // for normal request
+        }
 
     },
 
@@ -204,7 +215,7 @@ module.exports = {
         var duang = await User.find({ where: { username: { contains: req.session.username }, }, }).populate("Own");
         if (!duang) return res.notFound();
 
-        console.log(duang);
+        // console.log(count(duang[0]['Own']));
         // return res.json(duang);
 
         return res.view('project/myrentals', { homepage: duang[0]['Own'] });

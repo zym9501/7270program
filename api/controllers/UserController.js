@@ -29,6 +29,8 @@ module.exports = {
             if (err) return res.serverError(err);
 
             req.session.username = req.body.username;
+            req.session.userId = user.id;
+            req.session.role = user.role;
 
 
             sails.log("[Session] ", req.session);
@@ -69,14 +71,50 @@ module.exports = {
 
     populate: async function (req, res) {
 
-           
+
         var model = await User.findOne(req.params.id).populate("Own");
 
         if (!model) return res.notFound();
-        
+
         return res.json(model);
 
     },
+
+    add: async function (req, res) {
+
+        if (!await User.findOne(req.params.id)) return res.notFound();
+
+        const thatPerson = await Project.findOne(req.params.fk).populate("rentedby", { id: req.params.id });
+
+        if (!thatPerson) return res.notFound();
+
+        if (thatPerson.rentedby.length)
+            return res.status(409).send("Already added.");   // conflict
+
+        await User.addToCollection(req.params.id, "Own").members(req.params.fk);
+
+        return res.ok('Operation completed.');
+
+    },
+
+    remove: async function (req, res) {
+
+        if (!await User.findOne(req.params.id)) return res.notFound();
+
+        const thatPerson = await Project.findOne(req.params.fk).populate("rentedby", { id: req.params.id });
+
+        if (!thatPerson) return res.notFound();
+
+        if (!thatPerson.worksFor.length)
+            return res.status(409).send("Nothing to delete.");    // conflict
+
+        await User.removeFromCollection(req.params.id, "Own").members(req.params.fk);
+
+        return res.ok('Operation completed.');
+
+    },
+
+
 
 };
 

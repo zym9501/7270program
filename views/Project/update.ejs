@@ -81,13 +81,42 @@
             </div>
         </div>
 
-</form>
+    </form>
 
-<form action="/project/delete/<%= details.id %>" method="POST">
+
     <div class="row">
         <div class="form-group col-12 col-sm-6 col-lg-4 col-xl-6">
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-danger" onclick="deleteProject('<%= details.id %>')">Delete</button>
         </div>
     </div>
-</form>
+
 </div>
+
+<script>
+
+    async function deleteProject(id) {
+
+        var r = confirm("Confirm Delete?");
+
+        if (r) {
+
+            var response = await fetch("/project/delete/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location = data.url;
+            } else {
+                alert(response.status + ": " + response.statusText);
+            }
+
+        } else {
+            alert("cancelled");
+        }
+
+    };
+
+</script>
