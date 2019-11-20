@@ -22,6 +22,8 @@ module.exports = {
       type: "string"
     },
 
+    
+
 
     role: {
       type: 'string',

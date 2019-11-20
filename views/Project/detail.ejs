@@ -57,12 +57,12 @@
         <% }else if(req.session.username == key){ %>
             <div class="row col-12 col-12 col-sm-6 col-lg-6 col-xl-6">
                 <p> <button type="submit" class="btn btn-danger" style="background-color: red"
-                        onclick="cancelRental(id)" id="move-out">move-out</button>
+                        onclick="cancelRental('<%= session.userId %>','<%= details.id %>')" id="move-out">move-out</button>
                     </button></p>
         <% } else{ %>
         <div class="row col-12 col-12 col-sm-6 col-lg-6 col-xl-6">
             <p> <button type="submit" class="btn btn-primary" style="background-color: rgb(92, 126, 236)"
-                    onclick="corentRental(id)" id="co-rent">co-rent</button>
+                    onclick="corentRental('<%= session.userId %>','<%= details.id %>')" id="co-rent">co-rent</button>
                 </button></p>
             <% } %>
         </div>
@@ -84,13 +84,13 @@
         elem.innerHTML = "move-out";
     }
 
-    async function cancelRental(id) {
+    async function cancelRental(id,fk) {
 
         var r = confirm("Confirm move?");
 
         if (r) {
 
-            var response = await fetch("/user/<%= req.session.userId%>/own/remove/<%= details.id%>" + id, {
+            var response = await fetch("/user/"+ id + "/own/remove/" + fk, {
                 method: "POST",
                 credentials: 'same-origin',
             });
@@ -112,13 +112,13 @@
     };
 
 
-    async function corentRental(id) {
+    async function corentRental(id,fk) {
 
         var r = confirm("Confirm CoRent?");
 
         if (r) {
 
-            var response = await fetch("/user/<%= req.session.userId%>/own/add/<%= details.id%>" + id, {
+            var response = await fetch("/user/"+ id +"/own/add/" + fk, {
                 method: "POST",
                 credentials: 'same-origin',
             });
