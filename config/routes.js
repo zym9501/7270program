@@ -49,8 +49,8 @@ module.exports.routes = {
   'POST /user/create': 'UserController.create',
   'GET /user/create': 'UserController.create',
   'GET /user/:id/own': 'UserController.populate',
-  'POST /user/:id/own/add/:fk': 'UserController.add',
-  'POST /user/:id/own/remove/:fk': 'UserController.remove',
+  'PATCH /user/own/:fk': 'UserController.add',
+  'DELETE /user/own/:fk': 'UserController.remove',
 
 
   /***************************************************************************

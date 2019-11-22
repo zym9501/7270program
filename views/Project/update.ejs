@@ -1,27 +1,5 @@
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/project/index">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="/project/search">Search <span
-                        class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/project/create">Create</a>
-                <a class="nav-item nav-link" href="/project/admin">Admin</a>
-            </div>
-        </div>
-    </nav>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Real Estate Rental System</h1>
-            <p class="lead">Real Estate Rental Management System is a web-based system to facilitate flatshare and
-                finding roommates.</p>
-        </div>
-    </div>
-
+ 
     <!--update.ejs-->
     <form action="/project/update/<%= details.id %>" method="POST">
         <h3>Properly Update Form <span class="badge badge-secondary">Update</span></h3>

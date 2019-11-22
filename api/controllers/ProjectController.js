@@ -62,12 +62,14 @@ module.exports = {
         if (!model) return res.notFound();
 
         var restate = await Project.findOne(req.params.id).populate('rentedby');
-        numOfrentals= restate.rentedby.length;
+        numOfrentals = restate.rentedby.length || 0;
         //var customs = await Project.find({ where: { id: req.params.id } }).populate("rentedby");
         console.log(numOfrentals);
+        if (numOfrentals == 0)
+            return res.view('project/detail', { details: model, nor: numOfrentals, key: "" });
         //return res.json(restate.rentedby[0]['username']);
         //return res.view('project/detail', { details: model, nor:numOfrentals,key: customs[0]['username'] });
-        return res.view('project/detail', { details: model, nor:numOfrentals,key: restate.rentedby[0]['username'] });
+        return res.view('project/detail', { details: model, nor: numOfrentals, key: restate.rentedby[0]['username'] });
 
     },
 

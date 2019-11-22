@@ -82,35 +82,37 @@ module.exports = {
 
     add: async function (req, res) {
 
-        if (!await User.findOne(req.params.id)) return res.notFound();
+        if (!await User.findOne(req.session.userId)) return res.notFound();
 
-        const thatPerson = await Project.findOne(req.params.fk).populate("rentedby", { id: req.params.id });
+        const thatPerson = await Project.findOne(req.params.fk).populate("rentedby", { id: req.session.userId });
 
         if (!thatPerson) return res.notFound();
 
         if (thatPerson.rentedby.length)
             return res.status(409).send("Already added.");   // conflict
 
-        await User.addToCollection(req.params.id, "Own").members(req.params.fk);
+        await User.addToCollection(req.session.userId, "Own").members(req.params.fk);
 
-        return res.ok('Operation completed.');
+        return res.redirect("/project/myrentals");
+        // return res.ok('Operation completed.');
 
     },
 
     remove: async function (req, res) {
 
-        if (!await User.findOne(req.params.id)) return res.notFound();
+        if (!await User.findOne(req.session.userId)) return res.notFound();
 
-        const thatPerson = await Project.findOne(req.params.fk).populate("rentedby", { id: req.params.id });
+        const thatPerson = await Project.findOne(req.params.fk).populate("rentedby", { id: req.session.userId });
 
         if (!thatPerson) return res.notFound();
 
-        if (!thatPerson.worksFor.length)
+        if (!thatPerson.rentedby.length)
             return res.status(409).send("Nothing to delete.");    // conflict
 
-        await User.removeFromCollection(req.params.id, "Own").members(req.params.fk);
+        await User.removeFromCollection(req.session.userId, "Own").members(req.params.fk);
 
-        return res.ok('Operation completed.');
+        return res.redirect("/project/myrentals");
+        //return res.ok('Operation completed.');
 
     },
 
