@@ -93,8 +93,8 @@ module.exports = {
 
         await User.addToCollection(req.session.userId, "Own").members(req.params.fk);
 
-        return res.redirect("/project/myrentals");
-        // return res.ok('Operation completed.');
+        //return res.redirect('/project/myrentals');
+        return res.ok('Operation completed.');
 
     },
 
@@ -111,8 +111,8 @@ module.exports = {
 
         await User.removeFromCollection(req.session.userId, "Own").members(req.params.fk);
 
-        return res.redirect("/project/myrentals");
-        //return res.ok('Operation completed.');
+        //return res.redirect('/project/myrentals');
+        return res.ok('Operation completed.');
 
     },
 
