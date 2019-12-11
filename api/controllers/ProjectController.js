@@ -234,5 +234,67 @@ module.exports = {
         return res.view('project/occupants', { key: model[0]['rentedby'] });
 
     },
+
+    // M3 supporting
+    json1: async function (req, res) {
+        var project = await Project.find({
+            where: { 'highlight': { '!=': '' } },
+            limit: 4
+        })
+            .sort([{ id: 'DESC' },]);
+        
+        return res.json(project);
+    },
+    search2: async function (req, res) {
+        var project = await Project.find({
+            where: { estate: { contains: req.query.Project.estate }, },
+            limit: 4
+        })
+            .sort([{ id: 'DESC' },]);
+        
+        return res.json(project);
+    },
+    search3: async function (req, res) {
+        const sareamax = parseInt(req.query.Project.maxarea) || 900000;
+        const sareamin = parseInt(req.query.Project.minarea) || 1;
+        var project = await Project.find({
+            where: { bedrooms: { '>=': sareamin, '<=': sareamax, }, },
+            limit: 4
+        })
+            .sort([{ id: 'DESC' },]);
+        
+        return res.json(project);
+    },
+    myrentals1: async function (req, res) {
+
+        var duang = await User.find({ where: { username: { contains: req.session.username }, }, }).populate("Own");
+        if (!duang) return res.notFound();
+
+        // console.log(count(duang[0]['Own']));
+        // return res.json(duang);
+
+        return res.json(duang[0]['Own']);
+
+    },
+    populate1: async function (req, res) {
+
+        var model = await Project.findOne(req.params.id).populate("rentedby",{ id: req.session.userId});
+        var numOfrentals = model.rentedby.length ;
+
+        if (!model) return res.notFound();
+
+        return res.json(numOfrentals);
+
+    },
+    populate2: async function (req, res) {
+
+        var model = await Project.findOne(req.params.id).populate("rentedby");
+        var numOfrentals = model.rentedby.length ;
+
+        if (!model) return res.notFound();
+
+        return res.json(numOfrentals);
+
+    },
 };
 

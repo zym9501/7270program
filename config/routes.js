@@ -50,7 +50,17 @@ module.exports.routes = {
   'GET /user/create': 'UserController.create',
   'GET /user/:id/own': 'UserController.populate',
   'PATCH /user/own/:fk': 'UserController.add',
-  'DELETE /user/own/:fk': 'UserController.remove',
+  'DELETE /user/remove/:fk': 'UserController.remove',
+  'GET /user/json': 'UserController.json',
+
+  //M3 supporting
+  'GET /project/json1': 'ProjectController.json1',
+  'GET /project/search2': 'ProjectController.search2',
+  'GET /project/search3': 'ProjectController.search3',
+  'GET /project/myrentals1': 'ProjectController.myrentals1',
+  'GET GET /project/:id/rentedby1': 'ProjectController.populate1',
+  'GET GET /project/:id/rentedby2': 'ProjectController.populate2',
+  
 
 
   /***************************************************************************

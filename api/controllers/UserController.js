@@ -115,6 +115,16 @@ module.exports = {
         return res.ok('Operation completed.');
 
     },
+     // json function
+     json: async function (req, res) {
+
+        var project = await User.find();
+
+        return res.json(project);
+    },
+
+    //M3 supporting
+    
 
 
 
